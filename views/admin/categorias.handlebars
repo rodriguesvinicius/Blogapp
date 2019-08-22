@@ -1,0 +1,33 @@
+<div class="container mt-2" style="padding-top: 90px;">
+    <h2 class="text-center">Lista de Categorias</h2>
+    <hr>
+    <a href="/admin/categorias/add">
+        <buttom class="btn btn-success">Nova categoria</buttom>
+    </a>
+    <br>
+    {{#if success_msg}}
+    <div class="alert alert-success" id="error_msg">{{success_msg}}</div>
+    {{else}}
+    {{#if error_msg}}
+    <div class="alert alert-danger" id="error_msg">{{error_msg}}</div>
+    {{else}}
+    {{/if}}
+    {{/if}}
+    {{#each categorias}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>{{nome}}</h4>
+            <small>Slug: {{slug}}</small><br>
+            <small>Data Criação: {{date}}</small><br>
+            <!-- a linha a baixo esta pegando o id da categoria do banco de dados -->
+            <a href="/admin/categorias/edit/{{_id}}"><button class="btn btn-success mt-4">Editar Categorias</button></a>
+            <form action="/admin/categorias/deletar" method="POST">
+                <input type="hidden" name='id' value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+            </form>
+        </div>
+    </div>
+    {{else}}
+    <h4 class="mt-3">Nenhuma Categoria Registrada</h4>
+    {{/each}}
+</div>

@@ -1,0 +1,21 @@
+<div class="container mt-4" style="padding-top: 100px;">
+    <h1>Categorias: </h1>
+    <hr>
+    {{#if user}}
+    {{#each categorias}}
+    <a href="/categorias/{{slug}}">
+        <h5>{{nome}}</h5>
+    </a>
+    {{else}}
+
+    {{/each}}
+    {{else}}
+    {{#each categorias}}
+    <a href="/usuarios/registro">
+        <h5>{{nome}}</h5>
+    </a>
+    {{else}}
+    <div class=" alert alert-danger">Não possivel carregar as categorias</div>
+    {{/each}}
+    {{/if}}
+</div>

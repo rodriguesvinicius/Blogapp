@@ -1,0 +1,95 @@
+{{#if user}}
+<div class="container" style="padding-top: 100px;">
+    {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{else}}
+    {{/if}}
+
+    {{#each errosEdit}}
+    <div class="alert alert-danger" id="error_msg">{{texto}}</div>
+    {{else}}
+    {{/each}}
+    <div class="card">
+        <div class="card-body">
+            <img src="{{user.foto}}" alt="" width="40px;" height="40px;" style="border-radius: 360px;"> {{user.nome}}
+            <!--Material textarea-->
+            <form action="/minhaspostagens/nova" method="POST">
+                <div class="form-group shadow-textarea">
+                    <label for="exampleFormControlTextarea6"></label>
+                    <textarea class="form-control z-depth-1" rows="5" placeholder="O que você esta pensando hoje?..."
+                        name="conteudo"></textarea>
+                    <input type="hidden" class="form-control" name="usuario" value="{{user._id}}">
+                    <input type="submit" class="btn btn-success mt-3" value="Postar">
+                </div>
+                <!--Textarea with icon prefix-->
+            </form>
+
+        </div>
+    </div>
+</div>
+<section class="foto">
+    <div class="container">
+        <div class="card" class="alert alert-success">{{success_msg}}</div>
+        <h1 class="text-center mt-4">Minhas Postagens</h1>
+        <hr>
+    </div>
+    {{#each postagensUsuario}}
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-body">
+                <input type="hidden" name="idPostagem" value="{{_id}}">
+                <img src="{{usuario.foto}}" alt="" width="40px;" height="40px;" style="border-radius: 360px;">
+                {{usuario.nome}}
+                <small>Data:{{data}}</small><br><br>
+                <p class="text-justify">{{conteudo}}</p>
+                <div class="mt-4">
+                    <button type="button" class="btn btn-outline-warning waves-effect" data-toggle="modal"
+                        data-target="#modalRegisterForm">Alterar</button>
+                    <form action="/minhaspostagens/deletar" method="POST">
+                        <input type="hidden" name='id' value="{{_id}}">
+                        <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+        <form action="/minhaspostagens/alterar" method="post">
+            <div class="modal fade right" id="modalRegisterForm" tabindex="-1" role="dialog"
+                aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Alterar Publicação</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <input type="hidden" class="form-control" value="{{_id}}" name="id">
+                            <div class="md-form mb-5">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <textarea class="form-control z-depth-1" rows="5"
+                                    name="conteudo">{{conteudo}}</textarea>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success">Alterar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {{else}}
+    <div class="container">
+        <h4>Nenhuma postagem encontradas</h4>
+    </div>
+    {{/each}}
+</section>
+
+
+{{/if}}

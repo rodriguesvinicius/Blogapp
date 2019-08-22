@@ -1,0 +1,18 @@
+<div class="container mt-4" style="padding-top: 100px;">
+<h1>Categoria: {{categoria.nome}}</h1>
+{{#each postagens}}
+<div class="card mt-4">
+    <div class="car-body">
+         <small>Data:{{data}}</small>
+        <h3>{{titulo}}</h3>
+        <p>{{conteudo}}</p>
+        <a href="/postagem/{{slug}}"><button class="btn btn-success">Leia mais</button></a>
+    </div>
+</div>
+
+{{else}}
+<h5>Nenhuma Postagem encontrada</h5>
+<a href=""><button class="btn btn-success">Criar Postagem</button></a>
+{{/each}}
+</div>
+

@@ -1,0 +1,30 @@
+<div class="container" style="padding-top: 7%;">
+    <h1 class="text-center">Usuarios</h1>
+    <br>
+    <table class="table">
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">e-mail</th>
+                <th scope="col">Administrador</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each usuarios}}
+            <tr>
+                <th scope="row">{{_id}}</th>
+                <td>{{nome}}</td>
+                <td>{{email}}</td>
+                <td>{{eAdmin}}</td>
+                <td><a href=""><i class="fas fa-edit"></i></a>/<a href=""><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+            {{else}}
+            <div class="alert-danger">
+                <h1>Não foi possivel Listar os usuarios</h1>
+            </div>
+            {{/each}}
+        </tbody>
+    </table>
+</div> 

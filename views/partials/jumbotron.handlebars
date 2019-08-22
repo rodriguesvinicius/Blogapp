@@ -1,0 +1,21 @@
+<div class="jumbotron card card-image"
+    style="background-image: url(https://dl.airtable.com/exploreCoverImages%2FSB6usKP9R3GrLjmSWt9a_technology-785742_1920.jpg); background-position: center; background-repeat: no-repeat; background-size: cover; height: 600px;
+    margin-bottom: auto;">
+    <div class="text-white text-center py-5 px-4">
+        <div>
+
+            <h2 class="card-title h1-responsive pt-3 mb-5 font-bold mt-5 wow fadeInUp" data-wow-delay="0.2s">
+                <strong>BlogApp</strong></h2>
+            <p class="mx-5 mb-5  wow fadeInUp" data-wow-delay="0.3s" style="font-size: 20px;">Veja as melhores postagens
+                relacionadas a tecnologia! Cria já sua conta é de graça
+            </p>
+            {{#if user}} {{else}}
+
+            <a  href="/usuarios/registro" class="btn btn-purple wow fadeInUp" data-wow-delay="0.5s" style="border-radius: 20px;"><i
+                    class="fa fa-user left"></i> Sign up!</a>
+            <a class="btn btn-outline-purple wow fadeInUp" data-wow-delay="0.5s" style="border-radius: 20px;"><i
+                    class="fa fa-book left"></i> Saiba Mais</a>
+            {{/if}}
+        </div>
+    </div>
+</div>

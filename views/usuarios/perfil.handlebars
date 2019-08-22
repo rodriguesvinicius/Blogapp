@@ -1,0 +1,278 @@
+<div class="container mb-5" style="padding-top: 60px;">
+    <div class="card" style="border-radius: 10px;">
+        <a data-toggle="modal" data-target="#modalEditFoto">
+            <img src="{{perfilUsuario.fotoFundo}}" alt="" srcset="" height="350px;" width="100%">
+        </a>
+
+    </div>
+    <div class="card" style="height: 220px;">
+        <img src="{{user.foto}}" alt="" srcset="" height="200px;" width="200px;"
+            style="margin-left: 40%; border-radius: 360px; margin-top: -50px;">
+        <a data-toggle="modal" data-target="#modalRegisterForm">
+            <h1 class="text-center">{{user.nome}}</h1>
+        </a>
+    </div>
+
+    <form action="/usuarios/perfil/editnome" method="post">
+        <div class="modal fade right" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Alterar Nome</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-3">
+                        <input type="hidden" class="form-control" value="{{user._id}}" name="id">
+                        <div class="md-form mb-5">
+                            <i class="fas fa-user prefix grey-text"></i>
+                            <input type="text" id="orangeForm-name" class="form-control validate" value="{{user.nome}}"
+                                name="nome">
+                            <label data-error="wrong" data-success="Correto" for="orangeForm-name">Seu
+                                Nome</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success">Alterar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="/usuarios/perfil/editFoto" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="id" value="{{perfilUsuario._id}}">
+        <div class="modal fade right" id="modalEditFoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Alterar Foto de Fundo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="md-form">
+                        <center><input type="file" name="img" class="button mb-3"></center>
+                    </div>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success">Alterar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{{#each erros}}
+<div class="container">
+    <div class="alert alert-danger">{{texto}}</div>
+</div>
+{{else}}
+{{/each}}
+
+{{#if success_msg}}
+<div class="container">
+    <div class="alert alert-success" id="error_msg">{{success_msg}}</div>
+</div>
+{{else}}
+{{/if}}
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-5">
+            <div class="card">
+                <div class="alert white-text" style="background-color:#2ecc71;"><i class="fas fa-globe-americas"></i>
+                    Apresentação</div>
+                <p class="mb-1">
+                    <!-- Button trigger modal -->
+                    {{#if perfilUsuario}}
+                    <i class="fas fa-building"></i> Empresa:{{perfilUsuario.empresa}}<br><br>
+                    <i class="fas fa-graduation-cap"></i> Escola/faculdade:{{perfilUsuario.escola}}<br><br>
+                    <i class="fas fa-chalkboard-teacher"></i> Profissão:{{perfilUsuario.profissao}}<br><br>
+                    <i class="fas fa-code"></i> Linguagem Principal:{{perfilUsuario.linguagem}}<br><br>
+                    <center><button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                            data-target="#modalEdit">
+                            <i class="fas fa-plus-circle"></i> Editar Informações
+                        </button></center>
+                    <form action="/usuarios/perfil/edit" method="POST">
+                        <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Apresentação</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-form">
+                                            <input type="hidden" value="{{user._id}}" name="idUser">
+                                            <h6 class="red-text">Obs(*) são campos obrigatorios</h6>
+                                            <label for="empresa">Empresa</label>
+                                            <input type="text" class="form-control validate" name="empresa"
+                                                value="{{perfilUsuario.empresa}}">
+                                            <label for="escola">Escola/faculdade</label>
+                                            <input type="text" class="form-control validate" name="escola"
+                                                value="{{perfilUsuario.escola}}">
+                                            <label for="profissao">Profissão</label>
+                                            <input type="text" class="form-control validate" name="profissao"
+                                                value="{{perfilUsuario.profissao}}">
+                                            <label for="linguagem">Linguagem Principal</label>
+                                            <input type="text" class="form-control validate" name="linguagem"
+                                                value="{{perfilUsuario.linguagem}}">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- modal Adicionar Amigos -->
+                   
+                    {{else}}
+                    <center><button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                            data-target="#basicExampleModal">
+                            <i class="fas fa-plus-circle"></i> Inserir Informações
+                        </button></center>
+                    {{/if}}
+                    <!-- Modal -->
+                    <form action="/usuarios/perfilapresentacao/add" method="POST">
+                        <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Apresentação</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-form">
+                                            <input type="hidden" value="{{user._id}}" name="idUser">
+                                            <h6 class="red-text">Obs(*) são campos obrigatorios</h6>
+                                            <label for="empresa">Empresa</label>
+                                            <input type="text" class="form-control validate" name="empresa">
+                                            <label for="escola">Escola/faculdade</label>
+                                            <input type="text" class="form-control validate" name="escola">
+                                            <label for="profissao">Profissão</label>
+                                            <input type="text" class="form-control validate" name="profissao">
+                                            <label for="linguagem">Linguagem Principal</label>
+                                            <input type="text" class="form-control validate" name="linguagem">
+                                            <label for="linguagem">Linguagem Principal</label>
+                                            <input type="resumo" class="form-control validate" name="resumo">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </p>
+            </div>
+        </div>
+        <div class="col col-example">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="{{user.foto}}" alt="" width="40px;" height="40px;" style="border-radius: 360px;">
+                        {{user.nome}}
+                        <!--Material textarea-->
+                        <form action="/minhaspostagens/nova" method="POST">
+                            <div class="form-group shadow-textarea">
+                                <label for="exampleFormControlTextarea6"></label>
+                                <textarea class="form-control z-depth-1" rows="5"
+                                    placeholder="O que você esta pensando hoje?..." name="conteudo"></textarea>
+                                <input type="hidden" class="form-control" name="usuario" value="{{user._id}}">
+                                <input type="submit" class="btn btn-success mt-3" value="Postar">
+                            </div>
+                            <!--Textarea with icon prefix-->
+                        </form>
+
+                    </div>
+                </div>
+        </div>
+        <div class="w-100"></div>
+
+    </div>
+    <div class="row mb-3">
+        <div class="col-5">
+            <div class="card">
+                <div class="alert white-text" style="background-color:#2ecc71;"><i class="fas fa-user-friends"></i>
+                    Amigos</div>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdd"
+                    style='width: 150px;'>
+                    <i class="fas fa-plus-circle"></i>Pesquisar Amigos
+                </button>
+            </div>
+        </div>
+        <div class="col">
+            <h4 class="text-center">Suas Postagens</h4>
+            <hr>
+            {{#each postagensUsuario}}
+            <div class="card mt-4">
+                <div class="card-body">
+                    <input type="hidden" name="idPostagem" value="{{_id}}">
+                    <img src="{{usuario.foto}}" alt="" width="40px;" height="40px;" style="border-radius: 360px;">
+                    {{usuario.nome}}
+                    <small>Data:{{data}}</small><br><br>
+                    <p class="text-justify">{{conteudo}}</p>
+
+                        <button type="button" class="btn btn-outline-warning waves-effect" data-toggle="modal"
+                            data-target="#modalEditPost">Alterar</button>
+                    <form action="/minhaspostagens/deletar" method="POST">
+                        <input type="hidden" name='id' value="{{_id}}">
+                        <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+                    </form>
+
+
+                </div>
+                <form action="/minhaspostagens/alterar" method="post">
+                    <div class="modal fade right" id="modalEditPost" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold">Alterar Publicação</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <input type="hidden" class="form-control" value="{{_id}}" name="id">
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <textarea class="form-control z-depth-1" rows="5"
+                                            name="conteudo">{{conteudo}}</textarea>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-success">Alterar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {{else}}
+            <div class="alert alert-danger">Nenhuma postagem encontrada</div>
+            {{/each}}
+        </div>
+        <div class="w-100"></div>
+
+    </div>
+
+</div>

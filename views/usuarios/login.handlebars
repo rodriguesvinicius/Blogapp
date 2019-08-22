@@ -1,0 +1,87 @@
+<section class="view intro-2 hm-gradient" style=" height: 650px;">
+    <div class="full-bg-img">
+        <div class="container flex-center">
+            <div class="d-flex align-items-center content-height">
+                <div class="row flex-center pt-5">
+                    <div class="col-md-6 text-center text-md-left mb-5">
+                        <div class="white-text">
+                                 {{#if error_msg}}
+                            <div class="alert alert-danger" id="error_msg">
+                                {{error_msg}}
+                            </div>
+                            {{else}}
+                            {{/if}}
+                            <h1 class="h1-responsive font-bold wow fadeInLeft" data-wow-delay="0.5s">Crie sua
+                                conta totalmente gratis</h1>
+                       
+
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.4s">
+                            <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Acompanhe agora mesmo as postagens
+                                mais recentes sobre o mundo
+                                da tecnologia crie edite suas postagens quantas vezes quiser é totalmente gratis
+                                ta esperando o que não perca tempo crie hoje
+                                mesmo sua conta no Blogapp a melhor plataforma de conteudos de programação e
+                                tecnologia.
+                            </h6>
+                            <br>
+                            <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Saiba Mais</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-5 offset-xl-1">
+                        <!--Form-->
+                        <form action="/usuarios/login/" method="POST">
+                            <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                                <div class="card-body">
+                                    {{#if error}}
+                                    <div class="alert alert-danger" id="error_msg">
+                                        {{error}}
+                                    </div>
+                                    {{else}}
+
+                                    {{/if}}
+                                    <!--Header-->
+                                    <div class="text-center">
+                                        <h3 class="white-text"><i class="fa fa-user white-text"></i> Login
+                                        </h3>
+                                        <hr class="hr-light">
+                                    </div>
+
+                                    <!--Body-->
+
+                                    <div class="md-form">
+                                        <i class="fa fa-envelope prefix white-text"></i>
+                                        <input type="email" name="email" class="form-control" required
+                                            style="color: white;">
+                                        <label for="form3" style="color: white;">Your email</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <i class="fa fa-lock prefix white-text active"></i>
+                                        <input type="password" name="senha" class="form-control" required
+                                            style="color: white;">
+                                        <label for="form3" style="color: white;">Your password</label>
+                                    </div>
+
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-secondary">Entrar</button>
+                                        <hr class="hr-light mb-3 mt-2">
+
+                                        <div class="inline-ul text-center d-flex justify-content-center">
+                                            <a class="icons-sm fc-ic"><i class="fab fa-facebook white-text"></i></a>
+                                            <a class="icons-sm tw-ic"><i class=F"fab fa-twitter white-text"></i></a>
+                                            <a class="icons-sm gc-ic"><i class="fab fa-google white-text"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                        <!--/.Form-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

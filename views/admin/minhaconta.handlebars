@@ -1,0 +1,86 @@
+{{#each errosEdit}}
+<div class="alert alert-danger" style="padding-top: 100px;">{{texto}}</div>
+{{else}}
+{{/each}}
+
+
+{{#if success_msg}}
+<div class="alert alert-success" style="padding-top: 100px;" id="error_msg">
+    {{success_msg}}
+</div>
+{{else}}
+{{/if}}
+
+{{#if error_msg}}
+<div class="alert alert-danger" style="padding-top: 100px;" id="error_msg">
+    {{error_msg}}
+</div>
+{{else}}
+{{/if}}
+
+<div class="container mt-4" style="padding-top: 80px;">
+    <h3>Minha Conta</h3>
+    <div class="card">
+        <div class="card-body">
+            {{#if success_msg}}
+            <div class="alert alert-sucess">
+                {{success_msg}}
+            </div>{{else}}
+            {{/if}}
+            <img src="/img/boy02.png" alt="" height="100px;" width="100px;" class="mb-2" style="border-radius: 360px;"><br><br>
+            <form action="/usuarios/addfoto" method="post"  enctype="multipart/form-data">
+            <label for="img">Trocar Foto</label><br>
+            <input type="file" name="img" class="mb-3">
+            <button type="submit" class="btn btn-success">Enviar</button>
+            </form>
+            
+            <label for="Nome">Nome</label>
+            <input type="text" name="nome01" class="form-control" value="{{user.nome}}" disabled>
+            <label for="email">E-mail</label>
+            <input type="email" name="email01" class="form-control" value="{{user.email}}" disabled>
+            <label for="eAdmin">Administrador</label>
+            <input type="text" name="eAdmin01" class="form-control" value="{{user.eAdmin}}" disabled>
+
+
+            <form action="/admin/minhaconta/edit" method="post">
+                <div class="mt-4">
+                    <button type="button" class="btn btn-outline-warning waves-effect" data-toggle="modal"
+                        data-target="#modalRegisterForm">Alterar Dados</button>
+                </div>
+                <div class="modal fade right" id="modalRegisterForm" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Alterar Conta</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body mx-3">
+                                <input type="hidden" class="form-control" value="{{user._id}}" name="id">
+                                <div class="md-form mb-5">
+                                    <i class="fas fa-user prefix grey-text"></i>
+                                    <input type="text" id="orangeForm-name" class="form-control validate"
+                                        value="{{user.nome}}" name="nome">
+                                    <label data-error="wrong" data-success="Correto" for="orangeForm-name">Seu
+                                        Nome</label>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fas fa-envelope prefix grey-text"></i>
+                                    <input type="email" id="orangeForm-email" class="form-control validate"
+                                        value="{{user.email}}" name="email">
+                                    <label data-error="wrong" data-success="Correto"
+                                        for="orangeForm-email">email</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success">Alterar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

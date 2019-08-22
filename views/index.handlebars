@@ -1,0 +1,49 @@
+{{#if user}}
+{{>jumbotron}}
+<section class="foto">
+    <div class="container">
+        <h1 class="text-center mt-4">Postagens Sobre Linguagens</h1>
+        <hr>
+    </div>
+
+    {{#each postagens}}
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h4>Titulo: {{titulo}}</h4>
+                <p class="text-justify">Conteudo:{{descricao}}</p>
+                <p class="text-justify">Categoria: {{categoria.nome}}</p>
+                <small>Data:{{data}}</small><br><br>
+                <a href="/postagem/{{slug}}"><button class="btn btn-success purple-gradient">Leia mais</button></a>
+            </div>
+        </div>
+    </div>
+
+    {{else}}
+    {{/each}}
+</section>
+{{else}}
+{{>jumbotron}}
+<section class="foto">
+    <div class="container">
+        <h1 class="text-center mt-4">postagens Recentes</h1>
+        <hr>
+    </div>
+
+    {{#each postagens}}
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h4>Titulo: {{titulo}}</h4>
+                <p class="text-justify">Conteudo:{{descricao}}</p>
+                <p class="text-justify">Categoria: {{categoria.nome}}</p>
+                <small>Data:{{data}}</small><br><br>
+                <a href="/usuarios/registro"><button class="btn btn-success purple-gradient">Leia mais</button></a>
+            </div>
+        </div>
+    </div>
+
+    {{else}}
+    {{/each}}
+</section>
+{{/if}}

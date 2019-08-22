@@ -1,0 +1,87 @@
+{{#if user}}
+<div class="container" style="padding-top: 100px;">
+    {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{else}}
+    {{/if}}
+
+    {{#if success_msg}}
+    <div class="alert alert-success" id="error_msg">{{success_msg}}</div>
+    {{else}}
+    {{/if}}
+
+    {{#each errosEdit}}
+    <div class="alert alert-danger" id="error_msg">{{texto}}</div>
+    {{else}}
+    {{/each}}
+    <div class="card">
+        <div class="card-body">
+            <a href="/usuarios/perfil">
+            <img src="{{user.foto}}" alt="" height="40px;" width="40px;" style="border-radius: 360px;"> {{user.nome}}</a>
+            <!--Material textarea-->
+            <form action="/minhaspostagens/nova" method="POST">
+                <div class="form-group shadow-textarea">
+                    <label for="exampleFormControlTextarea6"></label>
+                    <textarea class="form-control z-depth-1" rows="5" placeholder="O que você esta pensando hoje?..."
+                        name="conteudo"></textarea>
+                    <input type="hidden" class="form-control" name="usuario" value="{{user._id}}">
+                    <input type="submit" class="btn btn-success mt-3" value="Postar">
+                    <a href="/minhaspostagens/add/{{user._id}}"><input type="button" class="btn btn-success mt-3"
+                            value="Minhas Postagens"></a>
+                </div>
+                <!--Textarea with icon prefix-->
+            </form>
+        </div>
+    </div>
+</div>
+<section class="foto">
+    <div class="container">
+        <h1 class="text-center mt-4">Postagens Recentes</h1>
+        <hr>
+    </div>
+    <!-- verifica se o usuario logado e admin se for ira listar um botão deletar em todas as postagens
+    mesmo não sendo dele-->
+    {{#if user.eAdmin}}
+    {{#each postagensUsuario}}
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-body">
+                <input type="hidden" name="idPostagem" value="{{_id}}">
+                <input type="hidden" name="idUser" value="{{usuario._id}}">
+               <a href="/usuarios/perfilusuario/{{usuario._id}}"> <img src="{{usuario.foto}}" alt="" width="40px;" height="40px;" style="border-radius: 360px;">
+                {{usuario.nome}}<br><br></a>
+                <p class="text-justify">{{conteudo}}</p>
+                <small>Data:{{data}}</small>
+                <form action="/minhaspostagens/deletar" method="POST">
+                    <input type="hidden" name='id' value="{{_id}}">
+                    <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{else}}
+    {{/each}}
+    {{else}}
+    <!-- se o usuario logado for diferente de admin não ira aparecer um botão deletar nas postagens gerais
+    e o unico jeito de apagar uma postagem sera apenas a dele na area de minhas postagens-->
+    {{#each postagensUsuario}}
+    <div class="container">
+        <div class="card mt-4 mb-4">
+            <div class="card-body">
+                <input type="hidden" name="idPostagem" value="{{_id}}">
+                <input type="hidden" name="idUser" value="{{usuario._id}}">
+               <a href="/usuarios/perfilusuario/{{usuario._id}}" ><img src="{{usuario.foto}}" alt="" width="40px;" height="40px;" style="border-radius: 360px;">
+                {{usuario.nome}}<br><br></a>
+                <p class="text-justify">{{conteudo}}</p>
+                <small>Data:{{data}}</small>
+
+            </div>
+        </div>
+    </div>
+
+    {{else}}
+    {{/each}}
+    {{/if}}
+</section>
+{{/if}}

@@ -1,0 +1,75 @@
+<div class="container mb-5" style="padding-top: 50px;">
+    <div class="card" style="border-radius: 10px;">
+        <img src="{{perfilUsuario.fotoFundo}}" alt="" srcset="" height="350px;" width="100%">
+    </div>
+    <div class="card" style="height: 220px;">
+        {{#if perfilUsuario}}
+        <img src="{{perfilUsuario.usuario.foto}}" alt="" srcset="" height="200px;" width="200px;"
+            style="margin-left: 40%; border-radius: 360px; margin-top: -50px;">
+        <h1 class="text-center">{{perfilUsuario.usuario.nome}}</h1>
+        {{else}}
+        <div class="alert alert-danger text-center" style="height: 100%;">Este Usuario ainda não finalizou seu perfil</div>
+        {{/if}}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-5">
+            <div class="card">
+                <div class="alert white-text" style="background-color:#2ecc71;"><i class="fas fa-globe-americas"></i>
+                    Apresentação </div>
+                <p class="mb-1">
+                    <!-- Button trigger modal -->
+                    {{#if perfilUsuario}}
+                    
+                    <i class="fas fa-building"></i> Empresa:{{perfilUsuario.empresa}}<br><br>
+                    <i class="fas fa-graduation-cap"></i> Escola/faculdade:{{perfilUsuario.escola}}<br><br>
+                    <i class="fas fa-chalkboard-teacher"></i> Profissão:{{perfilUsuario.profissao}}<br><br>
+                    <i class="fas fa-code"></i> Linguagem Principal:{{perfilUsuario.linguagem}}<br><br>
+                    {{else}}
+                    <h4>N/A informações</h4>
+                    {{/if}}
+                    <!-- Modal -->
+                </p>
+            </div>
+        </div>
+        <div class="col col-example">
+            <h4 class="text-center">{{#if perfilUsuario}}Postagem de {{perfilUsuario.usuario.nome}}{{else}}Usuario ainda não finalizou o Perfil{{/if}}</h4>
+            <hr>
+            {{#each postagensUsuario}}
+
+            <div class="card mt-4">
+                <div class="card-body">
+                    <input type="hidden" name="idPostagem" value="{{_id}}">
+                    <img src="{{usuario.foto}}" alt="" width="40px;" height="40px;" style="border-radius: 360px;">
+                    {{usuario.nome}}
+                    <small>Data:{{data}}</small><br><br>
+                    <p class="text-justify">{{conteudo}}</p>
+
+
+                </div>
+            </div>
+            {{else}}
+            <div class="alert alert-danger">Nenhuma postagem encontrada</div>
+            {{/each}}
+        </div>
+        <div class="w-100"></div>
+
+    </div>
+    <div class="row mb-3">
+        <div class="col-5">
+            <div class="card">
+                <div class="alert white-text" style="background-color:#2ecc71;"><i class="fas fa-user-friends"></i>
+                    Amigos</div>
+                <h4 class="text-center">Em Breve!</h4>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="w-100"></div>
+
+    </div>
+
+</div>
